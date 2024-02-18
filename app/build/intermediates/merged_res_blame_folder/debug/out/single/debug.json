@@ -1,0 +1,90 @@
+[
+    {
+        "merged": "com.example.betabreak.app-merged_res-45:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.example.betabreak.app-main-47:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.betabreak.app-merged_res-45:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.betabreak.app-main-47:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.betabreak.app-merged_res-45:/animator_logo_animator.xml.flat",
+        "source": "com.example.betabreak.app-main-47:/animator/logo_animator.xml"
+    },
+    {
+        "merged": "com.example.betabreak.app-merged_res-45:/xml_data_extraction_rules.xml.flat",
+        "source": "com.example.betabreak.app-main-47:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.example.betabreak.app-merged_res-45:/anim_overshoot_interpolator.xml.flat",
+        "source": "com.example.betabreak.app-main-47:/anim/overshoot_interpolator.xml"
+    },
+    {
+        "merged": "com.example.betabreak.app-merged_res-45:/drawable_ic_visibility.xml.flat",
+        "source": "com.example.betabreak.app-main-47:/drawable/ic_visibility.xml"
+    },
+    {
+        "merged": "com.example.betabreak.app-merged_res-45:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.betabreak.app-main-47:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.betabreak.app-merged_res-45:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.example.betabreak.app-main-47:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.betabreak.app-merged_res-45:/xml_backup_rules.xml.flat",
+        "source": "com.example.betabreak.app-main-47:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.example.betabreak.app-merged_res-45:/drawable_logo.xml.flat",
+        "source": "com.example.betabreak.app-main-47:/drawable/logo.xml"
+    },
+    {
+        "merged": "com.example.betabreak.app-merged_res-45:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.example.betabreak.app-main-47:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.betabreak.app-merged_res-45:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.betabreak.app-main-47:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.betabreak.app-merged_res-45:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.betabreak.app-main-47:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.betabreak.app-merged_res-45:/drawable_animated_logo.xml.flat",
+        "source": "com.example.betabreak.app-main-47:/drawable/animated_logo.xml"
+    },
+    {
+        "merged": "com.example.betabreak.app-merged_res-45:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.example.betabreak.app-main-47:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.example.betabreak.app-merged_res-45:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.betabreak.app-main-47:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.betabreak.app-merged_res-45:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.example.betabreak.app-main-47:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.example.betabreak.app-merged_res-45:/drawable_ic_visibility_off.xml.flat",
+        "source": "com.example.betabreak.app-main-47:/drawable/ic_visibility_off.xml"
+    },
+    {
+        "merged": "com.example.betabreak.app-merged_res-45:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.example.betabreak.app-main-47:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.example.betabreak.app-merged_res-45:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.betabreak.app-main-47:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.betabreak.app-merged_res-45:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.example.betabreak.app-main-47:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.example.betabreak.app-merged_res-45:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.betabreak.app-main-47:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    }
+]
