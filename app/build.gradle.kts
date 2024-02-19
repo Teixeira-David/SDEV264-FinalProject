@@ -59,6 +59,9 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
+    implementation("androidx.navigation:navigation-compose:2.7.7")
+    implementation("com.google.android.libraries.mapsplatform.transportation:transportation-consumer:2.1.0")
+    implementation("androidx.compose.material3:material3-window-size-class-android:1.2.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -68,4 +71,17 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
     implementation("androidx.core:core-splashscreen:1.0.1")
+
+    // DataStore Preferences
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+
+    // For ViewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
+
+    // For Compose UI
+    implementation("androidx.compose.ui:ui:1.0.1")
+    implementation("androidx.compose.material3:material3:1.0.0-alpha01")
+
+    // Check for the latest version
+    implementation("androidx.navigation:navigation-compose:2.4.0-alpha10")
 }

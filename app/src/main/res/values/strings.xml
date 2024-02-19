@@ -1,3 +1,75 @@
-<resources>
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">BetaBreak</string>
+    <string name="navigation_drawer">Navigation Drawer</string>
+    <string name="navigation_rail">Navigation Rail</string>
+    <string name="navigation_bottom">Navigation Bottom</string>
+    <string name="navigation_back">Back</string>
+    <string name="login_screen">Login</string>
+    <string name="details_screen">Details Page</string>
+    <string name="home_screen">Home Page</string>
+
+    <string name="carabiner_dashboard_title">Carabiner Dashboard</string>
+    <string name="carabiners_screen">Carabiners</string>
+
+    <string name="rope_dashboard_title">Rope Dashboard</string>
+    <string name="ropes_screen">Ropes</string>
+
+    <string name="harness_dashboard_title">Harness Dashboard</string>
+    <string name="harness_screen">Harnesses</string>
+
+    <string name="belay_device_dashboard_title">Belay Device Dashboard</string>
+    <string name="belay_device_screen">Belay Devices</string>
+
+    <string name="auto_belay_dashboard_title">Auto Belay Dashboard</string>
+    <string name="auto_belay_screen">Auto Belays</string>
+
+    <string name="reports">Reports</string>
+    <string name="back_button">Back</string>
+    <string name="dashboard_label">Dashboard</string>
+    <string name="detail_fragment_label">Item Info</string>
+    <string name="is_overdue">Overdue</string>
+
+    <string name="carabiner_inspection_description">
+    When thoroughly inspecting a carabiner, it is crucial to examine every part of
+    the device to ensure its safety and reliability. Here is a detailed description
+    of how to perform a thorough inspection of a carabiner:
+    </string>
+
+
+    <string name="rope_inspection_description">
+        When thoroughly inspecting a rope, it is crucial to examine every part
+        of the cordage to ensure its safety and reliability. Here is a detailed
+        description of how to perform a thorough inspection of a rope:
+    </string>
+
+    <string name="harness_inspection_description">
+        When thoroughly inspecting a harness, it is crucial to examine every part of the
+        equipment to ensure its safety and reliability. Here is a detailed description
+        of how to perform a thorough inspection of a harness:
+    </string>
+
+    <string name="belay_device_inspection_description">
+        When thoroughly inspecting a belay device, it is crucial to examine every part of the
+        equipment to ensure its safety and reliability. Here is a detailed description of how
+        to perform a thorough inspection of a belay device:
+    </string>
+
+    <string name="auto_belay_inspection_description">
+        When thoroughly inspecting an auto belay device, it is crucial to examine every part of
+        the equipment to ensure its safety and reliability. Here is a detailed description
+        of how to perform a thorough inspection of an auto belay device:
+    </string>
+
+    <plurals name="inspection_count_coming">
+        <item quantity="one">1 Expected</item>
+        <item quantity="other">%1$d Expected</item>
+    </plurals>
+
+    <plurals name="overdue_inspection_count">
+        <item quantity="one">1 Overdue</item>
+        <item quantity="other">%1$d Overdue</item>
+    </plurals>
+
 </resources>

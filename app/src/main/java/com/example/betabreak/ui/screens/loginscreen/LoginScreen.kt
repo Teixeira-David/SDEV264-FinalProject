@@ -1,28 +1,19 @@
-package com.example.betabreak
+package com.example.betabreak.ui.screens.loginscreen
 
-import android.animation.ObjectAnimator
-import android.annotation.SuppressLint
-import android.os.Bundle
-import android.view.View
-import android.view.animation.OvershootInterpolator
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.viewModels
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -37,71 +28,13 @@ import androidx.compose.ui.text.input.TransformedText
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.core.animation.doOnEnd
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.example.betabreak.ui.theme.BetaBreakTheme
-
-class MainActivity : ComponentActivity() {
-
-    private val viewModel by viewModels<MainViewModel>() // Create a ViewModel instance
-
-    @SuppressLint("Recycle")
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        // Install the splash screen and set a condition to keep it visible
-        installSplashScreen().apply {
-            // Configure the splash screen during the splash screen initialization
-            setKeepOnScreenCondition {
-                // Keep the splash screen visible until the ViewModel is ready
-                !viewModel.isReady.value
-            }
-            // Shrink the splash screen window to the minimum size and jump to log in screen
-            setOnExitAnimationListener { screen ->
-                val zoomX = ObjectAnimator.ofFloat(
-                    screen.iconView,
-                    View.SCALE_X,
-                    0.4f,
-                    0.0f
-                )
-                zoomX.interpolator = OvershootInterpolator() // Add an overshoot interpolator
-                zoomX.duration = 500L // Wait 500 milliseconds
-                zoomX.doOnEnd { screen.remove() }  // Remove the splash screen
-
-                val zoomY = ObjectAnimator.ofFloat(
-                    screen.iconView,
-                    View.SCALE_Y,
-                    0.4f,
-                    0.0f
-                )
-                zoomY.interpolator = OvershootInterpolator()
-                zoomY.duration = 500L
-                zoomY.doOnEnd { screen.remove() }
-
-                zoomX.start() // Start the zoomX animation
-                zoomY.start() // Start the zoomY animation
-            }
-        }
-
-        setContent {
-            BetaBreakTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    // Call the login screen
-                    LoginScreen(onLoginSubmitted = { strUserName, strPassword ->
-                        // Handle login logic here
-                        println("Username: $strUserName, Password: $strPassword")
-                    })
-                }
-            }
-        }
-    }
-}
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.example.betabreak.R
+import com.example.betabreak.data.Screens
 
 @Composable
-fun LoginScreen(onLoginSubmitted: (String, String) -> Unit) {
+fun LoginScreen(navController: NavHostController) {
     /*
     Function Name: LoginScreen
     Function Description: This function is used to create a login screen for the app.
@@ -120,6 +53,18 @@ fun LoginScreen(onLoginSubmitted: (String, String) -> Unit) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
+        // Insert the logo image at the center of the screen
+        Image(
+            painter = painterResource(id = R.drawable.logo),
+            contentDescription = "Logo",
+            modifier = Modifier
+                // Center the logo horizontally
+                .align(Alignment.CenterHorizontally)
+                .size(200.dp)
+        )
+        // Add a spacer between the logo and the text field
+        Spacer(modifier = Modifier.height(16.dp))
+
         // Add a Text Composable to the Column
         Text(
             text = "Login",
@@ -143,10 +88,10 @@ fun LoginScreen(onLoginSubmitted: (String, String) -> Unit) {
             visualTransformation = if (blnPasswordVisible) VisualTransformation.None else PasswordsVisualTransformation,
             trailingIcon = {
                 val image = if (blnPasswordVisible)
-                    // Turn on the visibility of the password
+                // Turn on the visibility of the password
                     painterResource(id = R.drawable.ic_visibility)
                 else
-                    // Turn off the visibility of the password
+                // Turn off the visibility of the password
                     painterResource(id = R.drawable.ic_visibility_off)
 
                 // Add the IconButton
@@ -158,8 +103,16 @@ fun LoginScreen(onLoginSubmitted: (String, String) -> Unit) {
         // Now add the login button
         Spacer(modifier = Modifier.height(16.dp))
         Button(
-            onClick = { onLoginSubmitted(strUserName, strPassword) },
-            enabled = strUserName.isNotBlank() && strPassword.isNotBlank()
+            onClick = {
+                if (strUserName.isNotEmpty() && strPassword.isNotEmpty()) {
+                    // Assume this is where you'd verify the credentials
+                    navController.navigate(Screens.Home.route) {
+                        popUpTo(navController.graph.startDestinationId) {
+                            inclusive = true
+                        }
+                    }
+                }
+            }
         ) {
             Text("Login")
         }
@@ -188,9 +141,6 @@ object PasswordsVisualTransformation : VisualTransformation {
 @Preview
 @Composable
 fun PreviewLoginScreen() {
-    // Create a preview of the LoginScreen
-    LoginScreen(onLoginSubmitted = { strUserName, strPassword ->
-        println("Username: $strUserName, Password: $strPassword")
-
-    })
+    val navController = rememberNavController()
+    LoginScreen(navController = navController)
 }
