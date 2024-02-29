@@ -62,6 +62,7 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.7.7")
     implementation("com.google.android.libraries.mapsplatform.transportation:transportation-consumer:2.1.0")
     implementation("androidx.compose.material3:material3-window-size-class-android:1.2.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -84,4 +85,7 @@ dependencies {
 
     // Check for the latest version
     implementation("androidx.navigation:navigation-compose:2.4.0-alpha10")
+
+    // For botton navigation
+    implementation("com.google.android.material:material:1.2.0")
 }

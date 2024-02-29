@@ -10,6 +10,14 @@
     <string name="details_screen">Details Page</string>
     <string name="home_screen">Home Page</string>
 
+
+    <string name="once_per_week">Once Per Week</string>
+    <string name="once_per_month">Once Per Month</string>
+    <string name="once_per_six_month">Once Every Six Months</string>
+    <string name="custom_inspection_timeframe">Custom</string>
+
+
+
     <string name="carabiner_dashboard_title">Carabiner Dashboard</string>
     <string name="carabiners_screen">Carabiners</string>
 
@@ -71,5 +79,7 @@
         <item quantity="one">1 Overdue</item>
         <item quantity="other">%1$d Overdue</item>
     </plurals>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
