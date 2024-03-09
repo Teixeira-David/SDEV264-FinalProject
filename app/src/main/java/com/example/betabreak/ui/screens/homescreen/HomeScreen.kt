@@ -54,7 +54,7 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.betabreak.R
 import com.example.betabreak.data.DashboardCompData
@@ -98,109 +98,7 @@ private val Any?.imageBanner: Int
         is RockGymCompData -> this.imageBanner
         else -> R.drawable.ic_carabiner_banner
     }
-@Composable
-fun HomeApp(
-    /*
-    Function Name: HomeApp
-    Function Description: This function is used to create the main app screen for the BetaBreak app.
-     */
-    windowSize: WindowWidthSizeClass,
-    onBackPressed: () -> Unit,
-    rockGymCompData: List<RockGymCompData>,
-) {
-    val viewModel: HomeDashboardViewModel = viewModel()
-    val uiState by viewModel.uiState.collectAsState()
-    val contentType = when (windowSize) {
-        WindowWidthSizeClass.Compact,
-        WindowWidthSizeClass.Medium -> HomeDashboardContentType.ListOnly
-        WindowWidthSizeClass.Expanded -> HomeDashboardContentType.ListAndDetail
-        else -> HomeDashboardContentType.ListOnly
-    }
-    // Create a NavController to navigate between the list and detail screen
-    val navController = rememberNavController()
-    val selectedTabIndex = remember { mutableStateOf(0) }
 
-    Scaffold(
-        topBar = {
-            HomeAppBar(
-                isShowingListPage = uiState.isShowingListPage,
-                onBackButtonClick = { viewModel.navigateToListPage() },
-                windowSize = windowSize
-            )
-        },
-        bottomBar = {
-            BottomBar(
-                onItemClick = { index ->
-                    selectedTabIndex.value = index
-                    when (index) {
-                        0 -> navController.navigate("home") {
-                            popUpTo(navController.graph.findStartDestination().id) {
-                                saveState = true
-                            }
-                            launchSingleTop = true
-                            restoreState = true
-                        }
-                        1 -> navController.navigate("report") {
-                            popUpTo(navController.graph.findStartDestination().id) {
-                                saveState = true
-                            }
-                            launchSingleTop = true
-                            restoreState = true
-                        }
-                        2 -> navController.navigate("help") {
-                            popUpTo(navController.graph.findStartDestination().id) {
-                                saveState = true
-                            }
-                            launchSingleTop = true
-                            restoreState = true
-                        }
-                        3 -> navController.navigate("settings") {
-                            popUpTo(navController.graph.findStartDestination().id) {
-                                saveState = true
-                            }
-                            launchSingleTop = true
-                            restoreState = true
-                        }
-                    }
-                },
-                selectedIndex = selectedTabIndex.value
-            )
-        }
-    ) { innerPadding ->
-        when {
-            contentType == HomeDashboardContentType.ListAndDetail -> {
-                HomeListAndDetail(
-                    homeListData = uiState.homeListData,
-                    selectedComp = uiState.currentComp as RockGymCompData?,
-                    onClick = { selectedRockGymCompData -> viewModel.updateCurrentComp(selectedRockGymCompData) },
-                    onBackPressed = onBackPressed,
-                    contentPadding = innerPadding,
-                    modifier = Modifier.fillMaxWidth()
-                )
-            }
-            uiState.isShowingListPage -> {
-                HomeList(
-                    homeListData = uiState.homeListData,
-                    onClick = { selectedRockGymCompData ->
-                        viewModel.updateCurrentComp(selectedRockGymCompData)
-                        viewModel.navigateToDetailPage()
-                    },
-                    modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.padding_medium)),
-                    contentPadding = innerPadding,
-                )
-            }
-            else -> {
-                HomeListDetail(
-                    selectedComp = uiState.currentComp,
-                    contentPadding = innerPadding,
-                    onBackPressed = { viewModel.navigateToListPage() }
-                )
-            }
-        }
-    }
-}
-
-/*
 @Composable
 fun HomeApp(
     /*
@@ -220,6 +118,7 @@ fun HomeApp(
         WindowWidthSizeClass.Expanded -> HomeDashboardContentType.ListAndDetail
         else -> HomeDashboardContentType.ListOnly
     }
+    val navController = rememberNavController()
 
     Scaffold(
         topBar = {
@@ -228,9 +127,10 @@ fun HomeApp(
                 onBackButtonClick = { viewModel.navigateToListPage() },
                 windowSize = windowSize
             )
-        }
+        },
+        bottomBar = { BottomBar(navController = navController, viewModel = viewModel()) }
     ) { innerPadding ->
-        when {
+            when {
             contentType == HomeDashboardContentType.ListAndDetail -> {
                 HomeListAndDetail(
                     homeListData = uiState.homeListData,
@@ -262,8 +162,6 @@ fun HomeApp(
         }
     }
 }
-*/
-
 
 @Composable
 private fun HomeListAndDetail(

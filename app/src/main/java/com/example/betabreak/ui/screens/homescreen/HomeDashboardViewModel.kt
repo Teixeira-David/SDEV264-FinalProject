@@ -21,6 +21,12 @@ class HomeDashboardViewModel : ViewModel() {
     )
     val uiState: StateFlow<DashboardUiState> = _uiState
 
+    // Add a function to update the visibility of the home page
+    fun showHomePage(show: Boolean) {
+        _uiState.update { currentState ->
+            currentState.copy(isShowingHomePage = show)
+        }
+    }
 
     fun updateCurrentComp(selectedComp: Any?) {
         _uiState.update {
@@ -28,16 +34,16 @@ class HomeDashboardViewModel : ViewModel() {
         }
     }
 
+    // Modify the navigateToListPage and navigateToDetailPage functions if necessary to update the isShowingHomePage state.
     fun navigateToListPage() {
         _uiState.update {
-            it.copy(isShowingListPage = true)
+            it.copy(isShowingListPage = true, isShowingHomePage = false)  // Set isShowingHomePage accordingly
         }
     }
 
-
     fun navigateToDetailPage() {
         _uiState.update {
-            it.copy(isShowingListPage = false)
+            it.copy(isShowingListPage = false, isShowingHomePage = false)  // Set isShowingHomePage accordingly
         }
     }
 }
@@ -45,5 +51,6 @@ class HomeDashboardViewModel : ViewModel() {
 data class DashboardUiState(
     val homeListData: List<RockGymCompData> = emptyList(),
     val currentComp: Any? = DashboardCompData.dashboardData,
-    val isShowingListPage: Boolean = true
+    val isShowingListPage: Boolean = true,
+    val isShowingHomePage: Boolean = true
 )

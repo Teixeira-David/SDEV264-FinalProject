@@ -7,8 +7,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.betabreak.data.DashboardCompData
 import com.example.betabreak.data.Screens
+import com.example.betabreak.ui.screens.helpscreen.HelpScreen
 import com.example.betabreak.ui.screens.homescreen.HomeApp
 import com.example.betabreak.ui.screens.loginscreen.LoginScreen
+import com.example.betabreak.ui.screens.settings.SettingsScreenWithState
 
 @Composable
 fun AppNavigation(
@@ -27,6 +29,14 @@ fun AppNavigation(
                 rockGymCompData = currentRockGymCompData,
                 navController = navController
             )
+        }
+        composable(Screens.Report.route) {
+        }
+        composable(Screens.Setting.route) {
+            SettingsScreenWithState(navController = navController)
+        }
+        composable(Screens.Help.route) {
+            HelpScreen(navController = navController)
         }
     }
 }

@@ -1,9 +1,9 @@
 package com.example.betabreak.data
 
+import android.util.Log
 import androidx.navigation.NavHostController
 
 sealed class Screens(val route: String) {
-
     object Login : Screens("login")
     object Home : Screens("home")
     object Carabiner : Screens("carabiner")
@@ -15,15 +15,24 @@ sealed class Screens(val route: String) {
     object Help : Screens("help")
     object Report : Screens("reports")
 
-    // Adding a parameterized route for detail screens
-    object Detail : Screens("detail/{rockGymCompId}") {
-        // Function to create a route with a specific rockGymCompId
-        fun createRoute(rockGymCompId: String) = "detail/$rockGymCompId"
-    }
 }
 
-// Function to navigate to different screens based on the provided Screen object
-fun navigateTo(screen: Screens, navController: NavHostController) {
-    navController.navigate(screen.route)
+fun navigateTo(
+    screen: Screens,
+    navController: NavHostController
+) {
+    // Debug log to understand navigation behavior
+    Log.d("NavigationDebug", "Navigating to ${screen.route}")
+
+    navController.navigate(screen.route) {
+        // Configure popUpTo to avoid a large stack of destinations
+        popUpTo(navController.graph.startDestinationId) {
+            saveState = true
+        }
+        // Avoid multiple instances of the same screen
+        launchSingleTop = true
+        // Restore state when navigating back to a destination
+        restoreState = true
+    }
 }
 

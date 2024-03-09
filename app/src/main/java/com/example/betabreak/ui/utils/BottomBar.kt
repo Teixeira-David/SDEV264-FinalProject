@@ -13,6 +13,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -20,7 +22,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.betabreak.R
+import androidx.navigation.NavHostController
+import com.example.betabreak.data.Screens
 
 private val Typography.caption: TextStyle
     get() {
@@ -32,43 +35,41 @@ private val Typography.caption: TextStyle
 
 @Composable
 fun BottomBar(
-    onItemClick: (Int) -> Unit,
-    selectedIndex: Int,
+    navController: NavHostController,
+    viewModel: BottomNavViewModel,
     modifier: Modifier = Modifier
 ) {
-    Surface(
-        modifier = modifier.fillMaxWidth()
-    ) {
+    val uiState by viewModel.uiState.collectAsState()
+
+    Surface(modifier = modifier.fillMaxWidth()) {
         Row(
             modifier = Modifier
                 .background(color = Color.White)
                 .padding(vertical = 12.dp),
             horizontalArrangement = Arrangement.SpaceAround
         ) {
-            BottomBarItem(
-                iconDrawable = R.drawable.ic_home_img,
-                text = "Home",
-                onItemClick = { onItemClick(0) },
-                isSelected = selectedIndex == 0
-            )
-            BottomBarItem(
-                iconDrawable = R.drawable.ic_reports_img,
-                text = "Reports",
-                onItemClick = { onItemClick(1) },
-                isSelected = selectedIndex == 1
-            )
-            BottomBarItem(
-                iconDrawable = R.drawable.ic_help,
-                text = "Help",
-                onItemClick = { onItemClick(2) },
-                isSelected = selectedIndex == 2
-            )
-            BottomBarItem(
-                iconDrawable = R.drawable.ic_settings_img,
-                text = "Settings",
-                onItemClick = { onItemClick(3) },
-                isSelected = selectedIndex == 3
-            )
+            uiState.items.forEach { item ->
+                // Determine if the item is selected based on the viewModel's selectedType.
+                val isSelected = uiState.selectedType == item.type
+                BottomBarItem(
+                    iconDrawable = item.icon,
+                    text = item.label,
+                    // Use the current state to conditionally style or behave based on selection
+                    isSelected = isSelected,
+                    onItemClick = {
+                        viewModel.selectNavItem(item.type)
+                        // Assuming navigateTo handles navigation based on item type or route
+                        val route = when (item.type) {
+                            BottomNavType.Home -> Screens.Home.route
+                            BottomNavType.Reports -> Screens.Report.route
+                            BottomNavType.Settings -> Screens.Setting.route
+                            BottomNavType.Help -> Screens.Help.route
+                            else -> ""
+                        }
+                        navController.navigate(route)
+                    }
+                )
+            }
         }
     }
 }

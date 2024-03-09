@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">BetaBreak</string>
+    <string name="app_name">Beta Break</string>
     <string name="navigation_drawer">Navigation Drawer</string>
     <string name="navigation_rail">Navigation Rail</string>
     <string name="navigation_bottom">Navigation Bottom</string>
