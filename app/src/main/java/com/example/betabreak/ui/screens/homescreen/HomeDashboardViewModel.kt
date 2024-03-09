@@ -46,4 +46,7 @@ data class DashboardUiState(
     val homeListData: List<RockGymCompData> = emptyList(),
     val currentComp: Any? = DashboardCompData.dashboardData,
     val isShowingListPage: Boolean = true
-)
+) {
+    val isShowingDetailPage: Boolean
+        get() = !isShowingListPage
+}
